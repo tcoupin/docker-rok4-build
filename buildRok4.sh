@@ -1,6 +1,5 @@
 #!/bin/bash
 
-VERSION="0.19.0"
 
 if [[ ! -d /rok4 ]]
 then
@@ -8,13 +7,18 @@ then
 	echo "ex : docker run -v $(pwd)/rok4:/rok4 rok4-build"
 	exit 0
 fi
-wget https://github.com/rok4/rok4/archive/${VERSION}.zip
-unzip rok4-${VERSION}.zip
-chmod -R 777 rok4-${VERSION}
-cd rok4-${VERSION}
+nbfile=$(ls | wc -l)
+if [[ "$nbfile" == "0" ]]
+then
+	wget https://github.com/rok4/rok4/archive/master.zip
+	unzip master.zip
+	chmod -R 777 rok4-*
+	cd rok4-*
+	mv * ../
+	cd ..
+fi
 mkdir build
 cd build
 cmake .. -DBUILD_BE4=FALSE -DBUILD_DOC=FALSE -DCMAKE_INSTALL_PREFIX=/rok4
-make
+make -j $(grep -c ^processor /proc/cpuinfo)
 make install
-
