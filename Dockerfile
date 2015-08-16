@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y wget
 RUN apt-get install -y unzip
 RUN apt-get install -y build-essential gettext nasm automake cmake
-RUN apt-get install -y perl libxml2-dev libgdal-perl liblog-log4perl-perl libconfig-inifiles-perl libxml-libxml-simple-perl libfile-copy-link
+RUN apt-get install -y perl libxml2-dev libgdal-perl liblog-log4perl-perl libconfig-inifiles-perl libxml-libxml-simple-perl libfile-copy-link-perl
 
 #Add build script
 RUN mkdir /rok4-tobuild
