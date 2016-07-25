@@ -13,6 +13,7 @@ RUN apt-get install -y perl libxml2-dev libgdal-perl liblog-log4perl-perl libcon
 RUN mkdir /rok4-tobuild
 RUN chown 1000 /rok4-tobuild
 RUN chgrp 1000 /rok4-tobuild
+RUN chmod -R 777 /tmp
 USER 1000
 WORKDIR /rok4-tobuild
 ADD buildRok4.sh /buildRok4.sh
