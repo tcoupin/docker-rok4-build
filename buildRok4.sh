@@ -17,6 +17,7 @@ then
 	mv * ../
 	cd ..
 fi
+chmod -R 777 /rok4
 mkdir build
 cd build
 cmake .. -DBUILD_BE4=FALSE -DBUILD_DOC=FALSE -DCMAKE_INSTALL_PREFIX=/rok4
