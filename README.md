@@ -5,6 +5,8 @@ A docker container to build rok4, no run only build.
 Pull the image tcoupin/rok4-build to test it!
 https://registry.hub.docker.com/u/tcoupin/rok4-build/
 
+Use the *arm* tag for RaspberryPi and ARM chipset.
+
 Rok4 is an open-source WMS/WMTS Raster server made by IGN France and used by Géoportail.gouv.fr.
 
 * www.rok4.org
@@ -29,12 +31,10 @@ You can supply a volume at /rok4-tobuild to compile your own version of Rok4.
 Ex:
 
 ```
-docker build -t rok4-build ./
-
 mkdir rok4
 #To compile the latest version of Rok4
-docker run -t -v $(pwd)/rok4:/rok4 rok4-build
+docker run -t -v $(pwd)/rok4:/rok4 tcoupin/rok4-build
 
 #To compile your Rok4
-docker run -t -v $(pwd)/rok4:/rok4 -v /home/you/workspace/rok4:/rok4-tobuild rok4-build
+docker run -t -v $(pwd)/rok4:/rok4 -v /home/you/workspace/rok4:/rok4-tobuild tcoupin/rok4-build
 ```
