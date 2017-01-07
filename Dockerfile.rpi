@@ -8,6 +8,7 @@ RUN apt-get install -y wget
 RUN apt-get install -y unzip
 RUN apt-get install -y build-essential gettext nasm automake cmake xsltproc
 RUN apt-get install -y perl libxml2-dev libgdal-perl liblog-log4perl-perl libconfig-inifiles-perl libxml-libxml-simple-perl libfile-copy-link-perl
+ADD http://www.opensource.apple.com/source/clang/clang-137/src/tools/clang/lib/Headers/mm_malloc.h?txt /usr/include/mm_malloc.h
 
 #Add build script
 RUN mkdir /rok4-tobuild
