@@ -1,0 +1,25 @@
+sudo: required
+
+service:
+  - docker
+
+language: bash
+
+install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
+
+script:
+  - docker build -t tcoupin/rok4-build-env .
+  - docker build -t tcoupin/rok4-build-env:arm -f Dockerfile.rpi .
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false"]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push tcoupin/rok4-build-env;
+    docker push tcoupin/rok4-build-env:arm;
+    fi
+
+
